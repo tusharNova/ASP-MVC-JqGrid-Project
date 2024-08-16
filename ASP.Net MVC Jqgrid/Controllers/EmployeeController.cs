@@ -11,15 +11,33 @@ namespace ASP.Net_MVC_Jqgrid.Controllers
 		}
 		public JsonResult GetEmployees()
 		{
-			var employees = new List<EmployeeModel>
+			var employees = new List<EmployeeModel>();
+
+			// Generate 50 demo employees
+			for (int i = 1; i <= 50; i++)
 			{
-				new EmployeeModel { Id = 1, Name = "John Doe", Position = "Developer", Age = 30, Office = "New York" },
-				new EmployeeModel { Id = 2, Name = "Jane Doe", Position = "Designer", Age = 25, Office = "London" },
-				new EmployeeModel { Id = 3, Name = "Michael Smith", Position = "Manager", Age = 35, Office = "Sydney" },
-				new EmployeeModel { Id = 4, Name = "Maria Garcia", Position = "HR", Age = 28, Office = "Madrid" },
-			};
+				employees.Add(new EmployeeModel
+				{
+					Id = i,
+					Name = $"Employee {i}",
+					Position = GetRandomPosition(),
+					Age = new Random().Next(20, 60),
+					Office = GetRandomOffice()
+				});
+			}
 
 			return Json(employees);
+		}
+		private string GetRandomPosition()
+		{
+			var positions = new[] { "Developer", "Designer", "Manager", "HR", "QA", "Support" };
+			return positions[new Random().Next(positions.Length)];
+		}
+
+		private string GetRandomOffice()
+		{
+			var offices = new[] { "New York", "London", "Sydney", "Madrid", "Berlin", "Tokyo" };
+			return offices[new Random().Next(offices.Length)];
 		}
 	}
 }
