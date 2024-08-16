@@ -29,4 +29,14 @@ namespace ASP.Net_MVC_Jqgrid.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 	}
-}
+
+	public class Person
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public int Age { get; set; }
+		public string Gender { get; set; }
+	}
+
+
+	}

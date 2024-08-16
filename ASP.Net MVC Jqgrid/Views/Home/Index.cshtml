@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@section Scripts {
+    <script src="~/js/grid.locale-en.js"></script>
+    <script src="~/js/jquery.jqGrid.min.js"></script>
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
+<div class="h1">table data</div>
+<link href="~/css/ui.jqgrid.css" rel="stylesheet" />
+
+
+<table id="grid" class="table table-bordered table-striped"> </table>
+
+<div id="pager"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#grid").jqGrid({
+        url: '@Url.Action("GetData", "Home")',
+        datatype: "json",
+        mtype: 'GET',
+        colName: ["Id", "Name", "Age", "Gender"],
+        colModel: [
+            { name: "Id", Index: "Id", width: 150 },
+            { name: "Name", Index: "Name", width: 150 },
+            { name: "Age", Index: "Age", width: 150, align: 'right' },
+            { name: "Gender", Index: "Gender", width: 150, align: 'right' },
+        ],
+        pager: '#pager',
+        rowNum: 10,
+        rowList: [10, 20, 30],
+        sortname: 'Id',
+        sortorder: 'desc',
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        height: 'auto'
+    });
+ });
+
+
+</script>
