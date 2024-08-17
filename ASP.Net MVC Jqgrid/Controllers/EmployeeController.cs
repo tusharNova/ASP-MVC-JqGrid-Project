@@ -41,25 +41,16 @@ namespace ASP.Net_MVC_Jqgrid.Controllers
 		{
 			
 			DataTable dt = new DataTable();
-			SqlConnection sqlconnection = new SqlConnection();
-			sqlconnection.ConnectionString = ConnectionString;
-			sqlconnection.Open();
-			SqlCommand cmd = new SqlCommand();
-			cmd = sqlconnection.CreateCommand();
-			SqlDataReader res;
-			cmd.CommandText = "select * from Employees;";
-			res = cmd.ExecuteReader();
-			dt.Load(res);
-			sqlconnection.Close();
-			//using (SqlConnection sqlConn = new SqlConnection(ConnectionString)) 
-			//{
-			//	sqlConn.Open();
-			//	string query = "Select * from Employees";
-			//	SqlDataAdapter sqlDa = new SqlDataAdapter(query, sqlConn);
-			//	sqlDa.Fill(dt);
-			//}
+			
+			using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+			{
+				sqlConn.Open();
+				string query = "Select * from Employees";
+				SqlDataAdapter sqlDa = new SqlDataAdapter(query, sqlConn);
+				sqlDa.Fill(dt);
+			}
 			List<EmployeeModel> employeeList = new List<EmployeeModel>();
-			for (int i = 1; i <= dt.Rows.Count; i++)
+			for (int i = 0; i < dt.Rows.Count -1 ; i++)
 			{
 				EmployeeModel p =  new EmployeeModel();
 				p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
