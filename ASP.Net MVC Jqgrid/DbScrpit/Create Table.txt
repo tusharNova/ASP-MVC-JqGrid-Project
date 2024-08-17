@@ -1,0 +1,24 @@
+﻿
+
+string ConnectionString = "Server=DESKTOP-UAD5JOD;Database=MvcCurdDb;Trusted_Connection=True;MultipleActiveResultSets=True;Encrypt=False";
+
+--------------Connection-String-------------------------------
+USE [dbTest2]
+GO
+
+/****** Object:  Table [dbo].[Employees]    Script Date: 17-08-2024 18:50:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Employees](
+	[Id] [int] NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Position] [varchar](50) NOT NULL,
+	[Age] [int] NOT NULL,
+	[Office] [varchar](50) NOT NULL
+) ON [PRIMARY]
+GO
+-------------------Create-Table-------------------------------
