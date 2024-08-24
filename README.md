@@ -34,3 +34,51 @@ Ensure you have the following installed before running this project:
 5. Run the project
 - Press `F5` to run the project or use the `Run` button in Visual Studio.
 
+## Project Structure
+### Models
+- EmployeeModel.cs: Represents the employee entity with the following properties
+   - `int Id`: The unique identifier for an employee.
+   - `string Name`: The name of the employee.
+   - `string Position`: The job position of the employee.
+   - `int Age`:  The age of the employee.
+   - `string Office`: The office location of the employee.
+### Controllers
+- **EmployeeController.cs**: Manages interaction between the view and the SQL Server database.
+   - `Create(EmployeeModel employee)`: Method to create a new employee record in the database.
+   - `JsonResult GetEmployees()`: Method to fetch the list of employees from the database and return it as a JSON object for displaying in the JqGrid.
+```bash
+using Microsoft.Data.SqlClient;
+
+public JsonResult GetEmployees()
+		{
+			
+			DataTable dt = new DataTable();
+			
+			using (SqlConnection sqlConn = new SqlConnection(ConnectionString))
+			{
+				sqlConn.Open();
+				string query = "Select * from Employees";
+				SqlDataAdapter sqlDa = new SqlDataAdapter(query, sqlConn);
+				sqlDa.Fill(dt);
+			}
+			List<EmployeeModel> employeeList = new List<EmployeeModel>();
+			for (int i = 0; i < dt.Rows.Count -1 ; i++)
+			{
+				EmployeeModel p =  new EmployeeModel();
+				p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
+				p.Name = dt.Rows[i]["Name"].ToString();
+				p.Position = dt.Rows[i]["Name"].ToString();
+				p.Age = Convert.ToInt32(dt.Rows[i]["Age"].ToString());
+				p.Office = dt.Rows[i]["Office"].ToString();
+				
+				employeeList.Add(p);
+			}
+
+			return Json(employeeList);
+		}
+```
+### Views
+- `Views/Employee/Index.cshtml`: The main view where the JqGrid is rendered and the employee data is displayed.
+
+### Database
+- **SQL Server**: The project connects directly to a SQL Server database to perform CRUD operations on the `Employee` table. Ensure the database schema is set up according to your requirements.
