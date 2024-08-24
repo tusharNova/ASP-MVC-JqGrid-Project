@@ -82,3 +82,24 @@ public JsonResult GetEmployees()
 
 ### Database
 - **SQL Server**: The project connects directly to a SQL Server database to perform CRUD operations on the `Employee` table. Ensure the database schema is set up according to your requirements.
+## Usage
+### Displaying Employee Data
+1. Navigate to the Employee Index view. The JqGrid will fetch and display the employee data automatically.
+
+2. The grid supports sorting, paging, and inline editing.
+### Adding a New Employee
+1. Click the "Add New Employee" button in the grid.
+2. Fill in the required fields (`Name`, `Position`, `Age`, `Office`).
+3. Click "Save" to submit the new employee record to the database.
+
+## Customization
+You can customize the grid's appearance and behavior by modifying the JqGrid options in the `Index.cshtml` view file. Refer to the JqGrid Documentation for more details on available options.
+
+## Contributing
+If you want to contribute to this project, feel free to fork the repository and submit a pull request. Please ensure your changes are well-documented and tested.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contact
+- For any questions or suggestions, feel free to open an issue or contact me at tusharmankar02@gamil.com .
