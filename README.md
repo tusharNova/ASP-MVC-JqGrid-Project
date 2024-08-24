@@ -15,3 +15,22 @@ Ensure you have the following installed before running this project:
 - Visual Studio 2019 or later
 - .NET Framework 4.7.2 or later
 - SQL Server (local or remote instance)
+
+  ## Getting Started
+1. Clone the repository
+```bash
+   git clone https://github.com/tusharNova/ASP-MVC-JqGrid-Project
+   cd ASP-MVC-JqGrid-Project
+```
+2. Open the project in Visual Studio3. John Quincy Adams
+- Navigate to the project directory and open the solution file (.`sln`) in Visual Studio.
+3. Configure the SQL Server connection
+- Update the connection string in the Emoployess file to point to your SQL Server database:
+```bash
+   string connection="server==your-server-name;Database=your-database-name;User Id = Username;Password=your-password;"
+```
+4. Build the project
+- Build the project to resolve any dependencies and compile the solution.
+5. Run the project
+- Press `F5` to run the project or use the `Run` button in Visual Studio.
+
